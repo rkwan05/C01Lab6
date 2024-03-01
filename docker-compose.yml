@@ -1,4 +1,12 @@
 services:
+  frontend:
+    image: rkwan05/quirknotes_frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile_frontend
+      target: frontend
+    ports:
+      - "3000:80"
   backend:
     image: rkwan05/quirknotes_backend:latest
     build:
@@ -11,14 +19,6 @@ services:
       - ENV=Docker
     depends_on:
       - mongodb
-  frontend:
-    image: rkwan05/quirknotes_frontend:latest
-    build:
-      context: .
-      dockerfile: Dockerfile_frontend
-      target: frontend
-    ports:
-      - "3000:80"
   mongodb:
     image: mongo:latest
     ports:
