@@ -13,16 +13,12 @@ RUN npm install
 # Copy backend source code
 COPY quirknotes/backend ./
 
-RUN mkdir -p /data/db
+EXPOSE 4000
+EXPOSE 27017
 
-# EXPOSE 27017
+CMD ["npm", "start"]
 
-COPY quirknotes/backend ./data/db
 
-FROM mongo:latest
 
-RUN mongod --dbpath=./data/db
 
-# run server
-RUN npm run dev
 
